@@ -1,0 +1,102 @@
+body { 
+  background: white url(http://tenderapp.com/images/top_bar.gif) repeat-x 0px 0px;
+}
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+#wrapper {
+  margin: 0 auto;
+  width: 435px;
+}
+
+#header {
+  height: 52px;
+  margin: 0px auto 30px;
+  border-bottom: 1px solid #DDD;
+}
+#header h2 {
+  float: left;
+}
+#header h2 a, #header h2 a:hover {
+  color: black;
+  background-color: white;
+}
+#header p {
+  float:right;
+}
+
+input {
+  border: 1px solid #DDD;
+  padding: 5px 10px;
+  font-size: 24px;
+  width: 415px;
+  outline-offset: -2px;
+}
+img {
+  float: right;
+  border: 0px;
+}
+table {
+  width: 100%;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  clear: both;
+}

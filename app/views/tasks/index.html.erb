@@ -1,0 +1,12 @@
+  <h1>Add new task</h1>
+  <%= render 'form' %>
+
+  <p id="notice"><%= notice %></p>
+
+  <ul>
+  <% @tasks.each do |task| %>
+      <li><%= task.name %>
+          <%= link_to image_tag("/images/delete.png"), task, :confirm => 'Are you sure?', :method => :delete %>
+          <%= link_to image_tag("/images/edit.png"), edit_task_path(task) %>
+  <% end %>
+  </ul>
