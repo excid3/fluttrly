@@ -25,6 +25,7 @@ class TasksController < ApplicationController
       if @task.save
         format.html { redirect_to(tasks_path, :notice => 'Task was successfully created.') }
         format.xml  { render :xml => @task, :status => :created, :location => @task }
+        format.js
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
@@ -53,10 +54,12 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
+    @id = params[:id]
 
     respond_to do |format|
       format.html { redirect_to(tasks_url) }
       format.xml  { head :ok }
+      format.js
     end
   end
 end
