@@ -1,0 +1,2 @@
+page.insert_html :top, :tasks, :partial => 'task', :object => @task
+page[:task_form].reset
