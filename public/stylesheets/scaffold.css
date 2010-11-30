@@ -100,3 +100,14 @@ ul {
 ul li {
   clear: both;
 }
+
+#footer {
+  color: #888;
+  font-size: 14px;
+  text-align: center;
+  width: 98.5%;
+  position: fixed;
+  bottom: 0px;
+  height: 32px;
+
+}
