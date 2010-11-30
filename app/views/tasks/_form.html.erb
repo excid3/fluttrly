@@ -12,6 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.text_field :name %>
+    <%= f.hidden_field :name, :value => params[:name] %>
+    <%= f.text_field :content, :placeholder => "Add a new task" %>
   </div>
 <% end %>

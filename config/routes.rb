@@ -1,7 +1,9 @@
 Fluttr::Application.routes.draw do
   resources :tasks
+  
+  match ':name', :to => "tasks#index"
 
-  root :to => "tasks#index"
+  root :to => "tasks#home"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

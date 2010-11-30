@@ -1,9 +1,13 @@
 class TasksController < ApplicationController
+  def home
+    redirect_to "/#{params[:name]}" if params[:name]
+  end
+ 
   # GET /tasks
   # GET /tasks.xml
   def index
     @task = Task.new
-    @tasks = Task.order("updated_at DESC")
+    @tasks = Task.where("name = ?", params[:name]).order("updated_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
