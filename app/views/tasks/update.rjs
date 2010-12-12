@@ -1,6 +1,1 @@
-if @task.completed
-  page[@task.id.to_s].add_class_name "completed"
-else
-  page[@task.id.to_s].remove_class_name "completed"
-end
 page.visual_effect :highlight, @task.id.to_s
