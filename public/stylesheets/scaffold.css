@@ -127,3 +127,6 @@ h2 {
 .addthis_toolbox span {
   float:left;
 }
+img#close {
+  margin: 3px;
+}

@@ -5,6 +5,7 @@
           <%- else -%>
             <span>
           <%- end -%>
-          <%= task.content %></span>
-          <%= link_to image_tag("/images/delete.gif"), task, :method => :delete, :remote => true %>
+          <%= link_to image_tag("/images/delete.gif", :id => :close), task, :method => :delete, :remote => true %>
+          <%= task.content %>
+          </span>
       </li>
