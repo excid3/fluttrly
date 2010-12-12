@@ -8,6 +8,10 @@ class TasksController < ApplicationController
   def index
     @task = Task.new
     @tasks = Task.where("name = ?", params[:name]).order("created_at DESC")
+    @count = 0
+    @tasks.each do |t|
+      @count += 1 unless t.completed
+    end
 
     respond_to do |format|
       format.html # index.html.erb
