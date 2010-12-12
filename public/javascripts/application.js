@@ -7,8 +7,10 @@ document.observe("dom:loaded", function () {
 	
 	if (c.checked) {
 	  c.next().addClassName("completed");
+	  decrementCount();
 	} else {
 	  c.next().removeClassName("completed");
+	  incrementCount();
 	}
 
 	var id = c.up().identify();
@@ -19,3 +21,19 @@ document.observe("dom:loaded", function () {
       }
   });
 });
+
+function incrementCount() {
+    updateTitle(getCount() + 1);
+}
+
+function decrementCount() {
+    updateTitle(getCount() - 1);
+}
+
+function getCount() {
+    return parseInt(document.title.split("(")[1].split(")")[0]);
+}
+function updateTitle(count) {
+    var title = document.title.split("(")[0];
+    document.title = title + " (" + count + ") on Fluttr";
+}

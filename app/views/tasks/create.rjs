@@ -1,3 +1,4 @@
 page.insert_html :top, :tasks, :partial => 'task', :object => @task
 page[:task_form].reset
 page.visual_effect :highlight, @task.id.to_s
+page << "incrementCount();"
