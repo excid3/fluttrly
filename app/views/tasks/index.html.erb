@@ -1,4 +1,17 @@
-  <h2><%= params[:name] %></h2>
+  <div style="float:right">
+  <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style ">
+    <a class="addthis_button_email"></a>
+    <a class="addthis_button_twitter"></a>
+    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_compact"></a>
+  </div>
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=excid3"></script>
+  <!-- AddThis Button END -->
+  </div>
+
+  <h1><%= params[:name] %></h1>
   <%= render 'form' %>
 
   <p id="notice"><%= notice %></p>
