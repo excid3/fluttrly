@@ -78,7 +78,7 @@ div.field, div.actions {
   float:right;
 }
 
-input {
+input#task_content{
   border: 1px solid #DDD;
   padding: 5px 10px;
   font-size: 24px;
@@ -113,4 +113,8 @@ ul li {
 }
 h2 {
   text-align:center;
+}
+
+.completed {
+  text-decoration: line-through;
 }

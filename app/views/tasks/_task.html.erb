@@ -1,3 +1,10 @@
-      <li id="<%= task.id %>"><%= task.content %>
+      <li id="<%= task.id %>">
+          <%= check_box_tag "completed", "yes", task.completed %>
+          <%- if task.completed -%>
+            <span class="completed">
+          <%- else -%>
+            <span>
+          <%- end -%>
+          <%= task.content %></span>
           <%= link_to image_tag("/images/delete.png"), task, :method => :delete, :remote => true %>
       </li>

@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   # GET /tasks.xml
   def index
     @task = Task.new
-    @tasks = Task.where("name = ?", params[:name]).order("updated_at DESC")
+    @tasks = Task.where("name = ?", params[:name]).order("created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -33,6 +33,7 @@ class TasksController < ApplicationController
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -41,14 +42,18 @@ class TasksController < ApplicationController
   # PUT /tasks/1.xml
   def update
     @task = Task.find(params[:id])
+    
+    @task.update_attribute(:completed, params[:completed])
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
         format.html { redirect_to(@task, :notice => 'Task was successfully updated.') }
         format.xml  { head :ok }
+        format.js
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
