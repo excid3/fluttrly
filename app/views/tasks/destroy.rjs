@@ -1,2 +1,2 @@
-page[@id].visual_effect :fade, :duration => 0.5
-page << "decrementCount();"
+page[params[:id]].visual_effect :fade, :duration => 0.5
+page << "decrementCount();" unless params[:completed]
