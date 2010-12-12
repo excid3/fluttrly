@@ -98,6 +98,7 @@ ul {
 }
 ul li {
   clear: both;
+  margin: 5px;
 }
 
 #footer {
@@ -115,5 +116,14 @@ h2 {
 }
 
 .completed {
+  color: #AAA;
   text-decoration: line-through;
+}
+.addthis_toolbox {
+  float: right;
+  margin-top: 15px;
+  width: 150px;
+}
+.addthis_toolbox span {
+  float:left;
 }
