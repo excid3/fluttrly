@@ -13,7 +13,7 @@ License
 -------
 Fluttr is protected under the AGPL license.
 
-Please see [LICENSE](http://github.com/brntbeer/fluttr/blob/master/LICENSE) for more details.
+Please see [LICENSE](http://github.com/excid3/fluttr/blob/master/LICENSE) for more details.
 
 Author
 ------

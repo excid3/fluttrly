@@ -122,7 +122,7 @@ ul li {
   position: fixed;
   bottom: 0px;
   height: 32px;
-
+  overflow: hidden;
 }
 h2 {
   text-align:center;
@@ -148,4 +148,9 @@ img#close {
 #count {
   color: #666;
   text-align: center;
+}
+
+#tasks a {
+    text-decoration: none;
+    color: #0084B4;
 }
