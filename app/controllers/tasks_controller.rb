@@ -85,4 +85,10 @@ class TasksController < ApplicationController
       format.js
     end
   end
+
+	#recieve a text, parse it and send it to update
+	def text_update
+		redirect_to :index
+
+	end
 end
