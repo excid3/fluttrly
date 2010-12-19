@@ -3,25 +3,27 @@
 document.observe("dom:loaded", function () {
   $("task_content").focus();
 
-  $("tasks").observe("click", function(e) {
+  if ($("tasks")) {
+    $("tasks").observe("click", function(e) {
       var c = Event.element(e);
       if (c.nodeName == "INPUT") {
 	
-	if (c.checked) {
-	  c.next().addClassName("completed");
-	  decrementCount();
-	} else {
-	  c.next().removeClassName("completed");
-	  incrementCount();
-	}
+  	  if (c.checked) {
+	    c.next().addClassName("completed");
+	    decrementCount();
+	  } else {
+	    c.next().removeClassName("completed");
+	    incrementCount();
+	  }
 
-	var id = c.up().identify();
-	new Ajax.Request("/tasks/" + id, {
-	  method: 'put',
-	  parameters: { completed: c.checked }
-	});
-      }
+	  var id = c.up().identify();
+	  new Ajax.Request("/tasks/" + id, {
+	    method: 'put',
+	    parameters: { completed: c.checked }
+	  });
+    }
   });
+  }
 });
 
 function incrementCount() {
