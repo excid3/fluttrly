@@ -121,11 +121,12 @@ h2 {
 }
 .addthis_toolbox {
   float: right;
-  margin-top: 15px;
-  width: 150px;
+  margin-top: 25px;
 }
 .addthis_toolbox span {
+  color: #666;
   float:left;
+  margin-right: 5px;
 }
 img#close {
   margin: 3px;
