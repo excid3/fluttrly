@@ -83,6 +83,19 @@ input#task_content{
   font-size: 24px;
   width: 415px;
   outline-offset: -2px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border: 1px solid #CCC;
+  outline:none; /* when highlighted, don't show browser outline */
+}
+
+
+input#task_content:focus {
+  box-shadow: rgba(82, 168, 236, 0.496094) 0px 0px 8px;
+  -webkit-box-shadow: rgba(82, 168, 236, 0.496094) 0px 0px 8px;
+  -moz-box-shadow: rgba(82, 168, 236, 0.496094) 0px 0px 8px;
+  border-color: rgba(82, 168, 236, 0.746094) !important;
 }
 img {
   float: right;
