@@ -1,6 +1,9 @@
 class TasksController < ApplicationController
   def home
     redirect_to "/#{params[:name]}" if params[:name]
+
+    @total = Task.select("DISTINCT(name)").count
+    puts @total
   end
  
   # GET /tasks
@@ -9,6 +12,7 @@ class TasksController < ApplicationController
     @task = Task.new
     @tasks = Task.where("name = ?", params[:name]).order("created_at DESC")
     @count = 0
+
     @tasks.each do |t|
       @count += 1 unless t.completed
     end

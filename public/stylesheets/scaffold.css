@@ -130,3 +130,8 @@ h2 {
 img#close {
   margin: 3px;
 }
+
+#count {
+  color: #666;
+  text-align: center;
+}
