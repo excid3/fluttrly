@@ -13,11 +13,11 @@
 ActiveRecord::Schema.define(:version => 20101212010945) do
 
   create_table "tasks", :force => true do |t|
-    t.string    "name"
-    t.string    "content"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "completed"
+    t.string   "name"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "completed",  :default => false
   end
 
 end
