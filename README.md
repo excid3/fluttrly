@@ -9,6 +9,12 @@ Usage
 At the home screen, just add your name to the text box and you're ready
 to start adding to a list.
 
+License
+-------
+Fluttr is protected under the AGPL license.
+
+Please see [LICENSE](http://github.com/brntbeer/fluttr/blob/master/LICENSE) for more details.
+
 Author
 ------
 Lovingly created by [Chris Oliver](http://github.com/excid3).
