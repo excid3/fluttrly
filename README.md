@@ -31,10 +31,10 @@ Example:
 GET Request http://fluttr.heroku.com/test.json
 
 Result:
-[{"task":{"name":"Example","created_at":"2010-12-19T02:58:06Z","completed":false,"updated_at":"2010-12-19T02:58:06Z","id":446,"content":"And you can easily share from the web"}},
-{"task":{"name":"Example","created_at":"2010-12-19T02:57:58Z","completed":true,"updated_at":"2010-12-19T02:58:00Z","id":445,"content":"This is a completed task"}},
-{"task":{"name":"Example","created_at":"2010-12-19T02:57:37Z","completed":false,"updated_at":"2010-12-19T02:57:51Z","id":443,"content":"Items can be checked as completed"}},
-{"task":{"name":"Example","created_at":"2010-12-19T02:57:22Z","completed":false,"updated_at":"2010-12-19T02:57:22Z","id":440,"content":"Type a new task"}}]
+    [{"task":{"name":"Example","created_at":"2010-12-19T02:58:06Z","completed":false,"updated_at":"2010-12-19T02:58:06Z","id":446,"content":"And you can easily share from the web"}},
+    {"task":{"name":"Example","created_at":"2010-12-19T02:57:58Z","completed":true,"updated_at":"2010-12-19T02:58:00Z","id":445,"content":"This is a completed task"}},
+    {"task":{"name":"Example","created_at":"2010-12-19T02:57:37Z","completed":false,"updated_at":"2010-12-19T02:57:51Z","id":443,"content":"Items can be checked as completed"}},
+    {"task":{"name":"Example","created_at":"2010-12-19T02:57:22Z","completed":false,"updated_at":"2010-12-19T02:57:22Z","id":440,"content":"Type a new task"}}]
 
 XML
 ---
@@ -43,42 +43,41 @@ Example:
 GET Request http://fluttr.heroku.com/test.xml
 
 Result:
-
-<?xml version="1.0" encoding="UTF-8"?> 
-<tasks type="array"> 
-  <task> 
-    <name>Example</name> 
-    <created-at type="datetime">2010-12-19T02:58:06Z</created-at> 
-    <completed type="boolean">false</completed> 
-    <updated-at type="datetime">2010-12-19T02:58:06Z</updated-at> 
-    <id type="integer">446</id> 
-    <content>And you can easily share from the web</content> 
-  </task> 
-  <task> 
-    <name>Example</name> 
-    <created-at type="datetime">2010-12-19T02:57:58Z</created-at> 
-    <completed type="boolean">true</completed> 
-    <updated-at type="datetime">2010-12-19T02:58:00Z</updated-at> 
-    <id type="integer">445</id> 
-    <content>This is a completed task</content> 
-  </task> 
-  <task> 
-    <name>Example</name> 
-    <created-at type="datetime">2010-12-19T02:57:37Z</created-at> 
-    <completed type="boolean">false</completed> 
-    <updated-at type="datetime">2010-12-19T02:57:51Z</updated-at> 
-    <id type="integer">443</id> 
-    <content>Items can be checked as completed</content> 
-  </task> 
-  <task> 
-    <name>Example</name> 
-    <created-at type="datetime">2010-12-19T02:57:22Z</created-at> 
-    <completed type="boolean">false</completed> 
-    <updated-at type="datetime">2010-12-19T02:57:22Z</updated-at> 
-    <id type="integer">440</id> 
-    <content>Type a new task</content> 
-  </task> 
-</tasks> 
+    <?xml version="1.0" encoding="UTF-8"?> 
+    <tasks type="array"> 
+      <task> 
+        <name>Example</name> 
+        <created-at type="datetime">2010-12-19T02:58:06Z</created-at> 
+        <completed type="boolean">false</completed> 
+        <updated-at type="datetime">2010-12-19T02:58:06Z</updated-at> 
+        <id type="integer">446</id> 
+        <content>And you can easily share from the web</content> 
+      </task> 
+      <task> 
+        <name>Example</name> 
+        <created-at type="datetime">2010-12-19T02:57:58Z</created-at> 
+        <completed type="boolean">true</completed> 
+        <updated-at type="datetime">2010-12-19T02:58:00Z</updated-at> 
+        <id type="integer">445</id> 
+        <content>This is a completed task</content> 
+      </task> 
+      <task> 
+        <name>Example</name> 
+        <created-at type="datetime">2010-12-19T02:57:37Z</created-at> 
+        <completed type="boolean">false</completed> 
+        <updated-at type="datetime">2010-12-19T02:57:51Z</updated-at> 
+        <id type="integer">443</id> 
+        <content>Items can be checked as completed</content> 
+      </task> 
+      <task> 
+        <name>Example</name> 
+        <created-at type="datetime">2010-12-19T02:57:22Z</created-at> 
+        <completed type="boolean">false</completed> 
+        <updated-at type="datetime">2010-12-19T02:57:22Z</updated-at> 
+        <id type="integer">440</id> 
+        <content>Type a new task</content> 
+      </task> 
+    </tasks> 
 
 POST
 ----
