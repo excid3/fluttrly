@@ -22,8 +22,14 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
+#notice, #errors {
+  text-align: center;
+}
 #notice {
   color: green;
+}
+#errors {
+  color: #C00;
 }
 
 .field_with_errors {

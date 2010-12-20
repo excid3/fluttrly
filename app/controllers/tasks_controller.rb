@@ -44,7 +44,7 @@ class TasksController < ApplicationController
         format.json { render :json => @task, :status => :created, :location => @task }
         format.js
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :errors => "Task cannot be blank" }
         format.xml  { render :xml => @task.errors, :status => :unprocessable_entity  }
         format.json { render :json => @task.errors, :status => :unprocessable_entity }
         format.js

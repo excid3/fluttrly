@@ -1,4 +1,10 @@
-page.insert_html :top, :tasks, :partial => 'task', :object => @task
-page[:task_form].reset
-page.visual_effect :highlight, @task.id.to_s
-page << "incrementCount();"
+if @task.errors.empty?
+  page.hide :errors
+  page.insert_html :top, :tasks, :partial => 'task', :object => @task
+  page[:task_form].reset
+  page.visual_effect :highlight, @task.id.to_s
+  page << "incrementCount();"
+else
+  page.show :errors
+  page.replace_html :errors, "Task cannot be blank"
+end
