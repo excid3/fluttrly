@@ -66,15 +66,13 @@ div.field, div.actions {
   margin: 0px auto 30px;
   border-bottom: 1px solid #DDD;
 }
-#header h2 {
-  float: left;
-}
-#header h2 a, #header h2 a:hover {
+
+#header a, #header a:hover {
   color: black;
   background-color: white;
 }
-#header p {
-  float:right;
+#header a img {
+  float: left;
 }
 
 input#task_content{
@@ -115,15 +113,15 @@ ul li {
 }
 
 #footer {
-  color: #888;
+  color: #CCC;
   font-size: 14px;
+  margin-top: 45px;
   text-align: center;
-  width: 98.5%;
-  position: fixed;
-  bottom: 0px;
-  height: 32px;
-  overflow: hidden;
 }
+#footer a {
+  color: #AAA;
+}
+
 h2 {
   text-align:center;
 }
@@ -134,7 +132,7 @@ h2 {
 }
 .addthis_toolbox {
   float: right;
-  margin-top: 25px;
+  margin-top: 15px;
 }
 .addthis_toolbox span {
   color: #666;
