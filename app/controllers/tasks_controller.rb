@@ -12,6 +12,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.xml
   def index
+
     @task = Task.new
     @tasks = Task.where("name = ?", params[:name]).order("created_at DESC")
     @count = 0
@@ -39,7 +40,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to(tasks_path, :notice => 'Task was successfully created.') }
+        format.html { redirect_to("/#{params[:task][:name]}", :notice => 'Task was successfully created.') }
         format.xml  { render :xml => @task, :status => :created, :location => @task  }
         format.json { render :json => @task, :status => :created, :location => @task }
         format.js
@@ -79,6 +80,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     params[:completed] = @task.completed
+    name = @task.name
     @task.destroy
 
     respond_to do |format|
@@ -89,9 +91,8 @@ class TasksController < ApplicationController
     end
   end
 
-	#recieve a text, parse it and send it to update
-	def text_update
-		redirect_to :index
-
-	end
+  # recieve a text, parse it and send it to update
+  def text_update
+    redirect_to :index
+  end
 end
