@@ -2,10 +2,13 @@ class TasksController < ApplicationController
   def home
     redirect_to "/#{params[:name]}" if params[:name]
 
-    @total = Task.select("DISTINCT(name)").count
-    puts @total
+    @total_tasks = Task.count
+    @total_lists = Task.select("DISTINCT(name)").count
   end
  
+  def features
+  end
+
   # GET /tasks
   # GET /tasks.xml
   def index
