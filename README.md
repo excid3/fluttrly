@@ -1,7 +1,7 @@
-Fluttr
-======
+Fluttrly
+========
 
-Fluttr is a simple to-do list that allows you and others to add to a todo
+Fluttrly is a simple to-do list that allows you and others to add to a todo
 list for all to see!
 
 Usage
@@ -11,7 +11,7 @@ to start adding to a list.
 
 License
 -------
-Fluttr is protected under the AGPL license.
+Fluttrly is protected under the AGPL license.
 
 Please see [LICENSE](http://github.com/excid3/fluttr/blob/master/LICENSE) for more details.
 
@@ -22,7 +22,7 @@ Lovingly created by [Chris Oliver](http://github.com/excid3).
 API
 ===
 
-The Fluttr API is ridiculously simple. Just append ".json" or ".xml" to the end of the list URL that you would like to retrieve.
+The Fluttrly API is ridiculously simple. Just append ".json" or ".xml" to the end of the list URL that you would like to retrieve.
 
 JSON
 ----
