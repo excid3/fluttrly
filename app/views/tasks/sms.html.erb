@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Sms>Fluttr!</Sms>
+    <% if success %>
+      <Sms>Fluttr!</Sms>
+    <% else %>
+      <Sms>Error. Make sure you format your message "LISTNAME: Your task goes here"</Sms>
+    <%- end -%>
 </Response>
 
