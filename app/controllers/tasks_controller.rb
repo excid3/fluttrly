@@ -92,7 +92,8 @@ class TasksController < ApplicationController
   end
 
   # recieve a text, parse it and send it to update
-  def text_update
-    redirect_to :index
+  def sms
+    
+    redirect_to :index, :notice => params.inspect
   end
 end
