@@ -73,7 +73,7 @@ div.field, div.actions {
 }
 
 #header {
-  height: 52px;
+  height: 42px;
   margin: 0px auto 30px;
   border-bottom: 1px solid #DDD;
 }
@@ -179,6 +179,7 @@ img#close {
     text-decoration: none;
     color: #0084B4;
 }
+#tasks a:hover { text-decoration: underline; }
 
 @media screen and (max-device-width: 480px) {
   #wrapper {
