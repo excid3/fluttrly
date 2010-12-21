@@ -3,7 +3,7 @@
     <% if @success %>
       <Sms>Successfully added to <%= request.env["HTTP_HOST"] %>/<%= @name %></Sms>
     <% else %>
-      <Sms>Error. Make sure you format your message "LISTNAME: Your task goes here"</Sms>
+      <Sms>Fluttr Error: Make sure you format your message "LISTNAME: Your task goes here"</Sms>
     <%- end -%>
 </Response>
 
