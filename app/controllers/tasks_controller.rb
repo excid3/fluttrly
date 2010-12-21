@@ -95,6 +95,5 @@ class TasksController < ApplicationController
 
   # recieve a text, parse it and send it to update
   def sms
-    redirect_to root_path
   end
 end
