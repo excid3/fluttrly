@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <% if @success %>
-      <Sms>Successfully added task to <%= @name %></Sms>
+      <Sms>Successfully added to <%= request.env["HTTP_HOST"] %>/<%= @name %></Sms>
     <% else %>
       <Sms>Error. Make sure you format your message "LISTNAME: Your task goes here"</Sms>
     <%- end -%>
