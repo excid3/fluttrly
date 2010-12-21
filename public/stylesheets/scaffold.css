@@ -159,3 +159,13 @@ img#close {
     text-decoration: none;
     color: #0084B4;
 }
+
+@media screen and (max-device-width: 480px) {
+  #wrapper {
+    width: 300px !important;
+  }
+
+  input#task_content {
+    width: 280px !important;
+  }
+}
