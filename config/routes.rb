@@ -1,6 +1,6 @@
 Fluttr::Application.routes.draw do
 
-  match 'sms', :to => "sms", :via => :post
+  match 'sms', :to => "tasks#sms", :via => :post
   match 'features', :to => "tasks#features", :as => "features"
 
   resources :tasks
