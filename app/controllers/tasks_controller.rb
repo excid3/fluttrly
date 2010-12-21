@@ -95,5 +95,6 @@ class TasksController < ApplicationController
 
   # recieve a text, parse it and send it to update
   def sms
+    render :layout => false
   end
 end
