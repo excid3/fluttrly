@@ -95,16 +95,9 @@ class TasksController < ApplicationController
 
   # recieve a text, parse it and send it to update
   def sms
-    task = Task.new()
-    begin
-      name, content = params[:Body].split(":", 2)
-      task.name = name
-      task.content = content
-      task.save
-      success = true
-    rescue
-      success = false
-    end
+    name, content = params[:Body].split(":", 2)
+    task = Task.new({ :name => name, :content => content })
+    @success = task.save
     render :layout => false
   end
 end
