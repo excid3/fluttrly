@@ -1,11 +1,11 @@
-<h2>A simple online todo list!</h2>
+<h2>Simple, Powerful Todo Lists!</h2>
 
-<p>Just type in the name of the todo list you would like to use and hit enter to get started!</p>
+<p class="center">Just type in the name you would like to use and hit enter</p>
 
 <%= form_tag do %>
   <input type="text" placeholder="Type a name and press Enter" id="task_content" name="name">
 <% end %>
 
-<h2>It's as easy as that!</h2>
+<h3 class="center"><%= link_to "See more features", features_path %></h3>
 
 <div id="count"><%= @total_tasks %> tasks, <%= @total_lists %> lists, and counting!</div>

@@ -18,6 +18,10 @@ pre {
 a { color: #000; }
 a:visited { color: #666; }
 
+.right { float: right; }
+.left { float: left; }
+.center { text-align: center; }
+
 div.field, div.actions {
   margin-bottom: 10px;
 }
@@ -132,6 +136,22 @@ ul li {
 h2 {
   text-align:center;
 }
+
+
+#features h3 {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+#features p {
+  margin: 0;
+  padding: 0;
+}
+#features li {
+  clear: both;
+  padding: 15px;
+}
+
 
 .completed {
   color: #AAA;
