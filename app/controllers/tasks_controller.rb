@@ -101,6 +101,7 @@ class TasksController < ApplicationController
       
       if @content.match(/^incomplete/)
         render :action => "incomplete"
+        return
 
       else
         task = Task.new({ :name => @name, :content => @content })
