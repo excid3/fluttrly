@@ -3,7 +3,7 @@
     <% if @success %>
       <Sms>Successfully added to <%= request.env["HTTP_HOST"] %>/<%= @name %></Sms>
     <% else %>
-      <Sms>Fluttr Error: Make sure you format your message "LISTNAME: Your task goes here"</Sms>
+      <Sms>Fluttrly: Invalid format. Use the following example "LIST: TASK HERE"</Sms>
     <%- end -%>
 </Response>
 
