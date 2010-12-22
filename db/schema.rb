@@ -10,14 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101212010945) do
+ActiveRecord::Schema.define(:version => 20101222054742) do
 
   create_table "tasks", :force => true do |t|
-    t.string   "name"
-    t.string   "content"
+    t.string   "name",                          :null => false
+    t.string   "content",                       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "completed",  :default => false
+    t.boolean  "completed",  :default => false, :null => false
   end
 
 end
