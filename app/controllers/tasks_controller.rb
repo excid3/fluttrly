@@ -100,7 +100,7 @@ class TasksController < ApplicationController
       @content.strip!
       
       if @content.match(/^incomplete/)
-        render :action => "incomplete"
+        render :action => "incomplete", :layout => false
         return
 
       else
