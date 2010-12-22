@@ -100,6 +100,7 @@ class TasksController < ApplicationController
       @content.strip!
       
       if @content.match(/^incomplete/)
+        @tasks = Task.where(["name = ? and completed <> ?", @name, false])
         render :action => "incomplete", :layout => false
         return
 

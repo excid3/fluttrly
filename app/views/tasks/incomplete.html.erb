@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Sms>
-    Incomplete items!
+    <% @tasks.each do |task| %>
+        <%= task.content %>. 
+    <% end %>
   </Sms>
 </Response>
