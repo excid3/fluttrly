@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Sms>
-    <% @tasks.each do |task| %>
-        <%= task.content %>. 
-    <% end %>
-  </Sms>
+  <% @tasks.scan(/.{0,140}/).each do |part| %>
+        <Sms><%= part %></Sms>
+  <% end %>
 </Response>
