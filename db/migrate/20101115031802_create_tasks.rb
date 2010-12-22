@@ -1,8 +1,8 @@
 class CreateTasks < ActiveRecord::Migration
   def self.up
     create_table :tasks do |t|
-      t.string :name
-      t.string :content
+      t.string :name, :null => false
+      t.string :content, :null => false
       t.timestamps
     end
   end
