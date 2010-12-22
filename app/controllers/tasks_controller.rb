@@ -98,8 +98,15 @@ class TasksController < ApplicationController
     @name, @content = params[:Body].split(":", 2)
     if not @name.nil? and @name != "" and not @content.nil? and @content != "" 
       @content.strip!
-      task = Task.new({ :name => @name, :content => @content })
-      @success = task.save
+      
+      if @content.match(/^incomplete/)
+        render :action => "incomplete"
+
+      else
+        task = Task.new({ :name => @name, :content => @content })
+        @success = task.save
+      end
+
     else
       @success = false
     end
