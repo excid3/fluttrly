@@ -1,0 +1,18 @@
+{
+  "name": "Fluttrly",
+  "description": "Simple, powerful todo lists",
+  "version": "1",
+  "app": {
+    "urls": [
+      "http://www.fluttrly.com"
+    ],
+    "launch": {
+      "web_url": "http://www.fluttrly.com"
+    }
+  },
+  "icons": {
+    "128": "fluttrly_128.png"
+  },
+  "permissions": []
+}
+
