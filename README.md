@@ -115,3 +115,38 @@ Example (Python):
     f = opener.open("http://localhost:3000/tasks.js", data)
 
     # You're done! Now visiting /test will have your new task!
+
+Example (Ruby):
+
+    require 'net/http'
+    require 'uri'
+
+    # Initialize our session
+    url = URI.parse("http://localhost:3000/test")
+    req = Net::HTTP::Get.new(url.path)
+    res = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+
+    # Parse out the auth token and get the session cookie
+    auth_token = $1 if res.body =~ /"authenticity_token".*value="(.+)"/ or nil
+    cookie = res['set-cookie'].split("; ")[0]
+
+    raise "No auth token" if auth_token.nil?
+
+    # Setup the params for POST
+    params = { 
+        "task[content]" => "NICE", 
+        "task[name]" => "test", 
+        "authenticity_token" => auth_token
+    }
+
+    # Create a POST request
+    url = URI.parse("http://localhost:3000/tasks.js")
+    req = Net::HTTP::Post.new(url.path)
+
+    # Setup parameters
+    req.add_field("Cookie", cookie)
+    req.set_form_data(params)
+
+    # POST!
+    res = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+
