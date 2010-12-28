@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  protect_from_forgery :except => :sms
+  protect_from_forgery :except => [ :create, :update, :delete, :sms ]
 
   def home
     redirect_to "/#{params[:name]}" if params[:name]
