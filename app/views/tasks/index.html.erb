@@ -1,4 +1,8 @@
-  <h2><%= params[:name] %></h2>
+  <h2>
+    <%= link_to (image_tag "unlocked.png", :class => :right), "/lock" %>
+    <%= params[:name] %>
+  </h2>
+
   <%= render 'form' %>
 
   <p id="errors"><%= params[:errors] %></p>
