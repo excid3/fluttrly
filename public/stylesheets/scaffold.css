@@ -26,29 +26,42 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
-#notice, #errors {
+.alert, .notice {
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 6px;
   text-align: center;
 }
-#notice {
-  color: green;
+.notice {
+  border-color: #7FA9CD;
+  background-color: #DEF2FC;
+  color: #3375AF;
 }
+.alert {
+  color: #D8000C;
+  background-color: #FFBABA;
+}
+
 #errors {
   color: #C00;
+  text-align: center;
 }
 
 .field_with_errors {
+  color: #D8000C;
+  font-weight: bold;
   padding: 2px;
-  background-color: red;
   display: table;
 }
 
 #error_explanation {
-  width: 450px;
+  width: 100%;
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
+  border-radius: 5px;
 }
 
 #error_explanation h2 {
@@ -58,13 +71,13 @@ div.field, div.actions {
   font-size: 12px;
   margin: -7px;
   margin-bottom: 0px;
-  background-color: #c00;
-  color: #fff;
+  background-color: #FFBABA;
+  color: #D8000C;
 }
 
 #error_explanation ul li {
   font-size: 12px;
-  list-style: square;
+  list-style: none;
 }
 
 #wrapper {
@@ -74,7 +87,7 @@ div.field, div.actions {
 
 #header {
   height: 42px;
-  margin: 0px auto 30px;
+  margin: 0px auto 10px;
   border-bottom: 1px solid #DDD;
 }
 
@@ -85,8 +98,12 @@ div.field, div.actions {
 #header a img {
   float: left;
 }
+#header #nav {
+  margin-top: 8px;
+  float: right;
+}
 
-input#task_content{
+input[type=text], input[type=password]{
   border: 1px solid #DDD;
   padding: 5px 10px;
   font-size: 24px;
@@ -96,16 +113,34 @@ input#task_content{
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border: 1px solid #CCC;
-  outline:none; /* when highlighted, don't show browser outline */
 }
 
 
-input#task_content:focus {
+input:focus {
   box-shadow: rgba(82, 168, 236, 0.496094) 0px 0px 8px;
   -webkit-box-shadow: rgba(82, 168, 236, 0.496094) 0px 0px 8px;
   -moz-box-shadow: rgba(82, 168, 236, 0.496094) 0px 0px 8px;
   border-color: rgba(82, 168, 236, 0.746094) !important;
+  outline:none; /* when highlighted, don't show browser outline */
 }
+input[type=submit] {
+  background-color: #FAFAFA;
+  border-color: #BBB, #BBB, #999;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 20px;
+  padding: 5px 9px;
+  text-shadow: 0 1px #F0F0F0;
+  -webkit-box-shadow: 0 1px 0 #F8F8F8;
+}
+input[type=submit]:hover, input[type=submit]:focus {
+  background-color: #CCC;
+}
+input[type=submit]:active {
+  background-color: #AAA;
+}
+
 img {
   float: right;
   border: 0px;
@@ -156,15 +191,6 @@ h2 {
 .completed {
   color: #AAA;
   text-decoration: line-through;
-}
-.addthis_toolbox {
-  float: right;
-  margin-top: 15px;
-}
-.addthis_toolbox span {
-  color: #666;
-  float:left;
-  margin-right: 5px;
 }
 img#close {
   margin: 3px;

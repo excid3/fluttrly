@@ -1,3 +1,10 @@
+  <div id="lock" class="right">
+    <% if not @list.user_id %>
+      <%= link_to "Lock", "#{request.url}/lock", :method => :post %>
+    <% else %>
+      <%= link_to "Unlock", "#{request.url}/lock", :method => :post %>
+    <% end %>
+  </div>
   <h2>
     <%= params[:name] %>
   </h2>
@@ -5,7 +12,6 @@
   <%= render 'form' %>
 
   <p id="errors"><%= params[:errors] %></p>
-  <p id="notice"><%= notice %></p>
 
   <ul id="tasks">
     <%= render :partial => 'task', :collection => @tasks %>
