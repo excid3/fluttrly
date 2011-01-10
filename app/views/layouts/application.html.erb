@@ -22,19 +22,20 @@
 
 <div id="wrapper">
   <div id="header">
+
     <a href="/"><%= image_tag "fluttrly.png" %></a>
 
-  <!-- AddThis Button BEGIN -->
-    <div class="addthis_toolbox addthis_default_style">
-    <span>Share</span>
-    <a class="addthis_button_compact"></a>
-  </div>
-  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
-  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=excid3"></script>
-  <!-- AddThis Button END -->
+    <div id="nav">
+      <% if not user_signed_in? %>
+        <%= link_to "Sign Up", new_user_registration_url %> or <%= link_to "Login", new_user_session_url %>
+      <% else %>
+        <%= link_to "Account", edit_user_registration_url %> | <%= link_to "Logout", destroy_user_session_url %>
+      <% end %>
+    </div>
 
-    <!--<p>Because ideas wander</p>-->
   </div>
+  <% if notice %><p class="notice"><%= notice %></p><% end %>
+  <% if alert %><p class="alert"><%= alert %></p><% end %>
 
 <%= yield %>
 

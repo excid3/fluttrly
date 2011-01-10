@@ -11,12 +11,48 @@ class TasksController < ApplicationController
   def features
   end
 
+  def lock
+    if not user_signed_in?
+      session[:redirect_to] = "/#{params[:name]}"
+      redirect_to(new_user_session_url, :notice => "You must be logged in to lock a list")
+      return
+    end
+
+    @list = List.where(["name = ?", params[:name]]).first
+    puts @list.inspect
+    if not @list.nil? and @list.user_id
+      # Remove it
+      @list.update_attribute(:user_id, nil)
+    else
+      @list.update_attribute(:user_id, current_user.id)
+    end
+    
+    redirect_to "/#{params[:name]}"
+  end
+
   # GET /tasks
   # GET /tasks.xml
   def index
+    #TODO: validate that params[:name] is a valid URL
 
+    # Set redirect_to in session so we can redirect back here after login
+    session[:redirect_to] = "/#{params[:name]}"
+
+    @list = List.where(["name = ?", params[:name]]).first
+
+    # Check to make sure the list exists
+    if not @list.nil?
+      if @list.user_id and not (user_signed_in? and current_user.id == @list.user_id)
+        redirect_to(new_user_session_url, :notice => "This list is protected.")
+        return
+      end
+      @tasks = @list.tasks.order("created_at DESC")
+    else
+      @tasks = []
+    end
+
+    # Initialize the defaults
     @task = Task.new
-    @tasks = Task.where("name = ?", params[:name]).order("created_at DESC")
     @count = 0
 
     @tasks.each do |t|
@@ -38,7 +74,16 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.xml
   def create
-    @task = Task.new(params[:task])
+    @list = List.where(["name = ?", params[:task][:name]]).first
+    
+    # List has never been created before
+    if @list.nil?
+      puts "Creating new list"
+      @list = List.new({:name => params[:task][:name]})
+      @list.save
+    end
+    @task = @list.tasks.new(params[:task])
+    puts @list.inspect, @task.inspect
 
     respond_to do |format|
       if @task.save
