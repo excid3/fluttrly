@@ -42,9 +42,11 @@ class TasksController < ApplicationController
 
     # Check to make sure the list exists
     if not @list.nil?
-      if @list.user_id and not (user_signed_in? and current_user.id == @list.user_id)
-        redirect_to(new_user_session_url, :notice => "This list is protected.")
+      if @list.user_id and not user_signed_in?
+        redirect_to(new_user_session_url, :notice => "This list is protected.") and return
         return
+      elsif @list.user_id and user_signed_in? and not current_user.id == @list.user_id
+        redirect_to(root_path, :notice => "You aren't allowed to access this list.") and return
       end
       @tasks = @list.tasks.order("created_at DESC")
     else
