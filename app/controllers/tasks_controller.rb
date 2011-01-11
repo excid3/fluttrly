@@ -85,7 +85,6 @@ class TasksController < ApplicationController
       @list.save
     end
     @task = @list.tasks.new(params[:task])
-    puts @list.inspect, @task.inspect
 
     respond_to do |format|
       if @task.save
