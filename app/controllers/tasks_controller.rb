@@ -12,6 +12,11 @@ class TasksController < ApplicationController
   end
 
   def lock
+    if ["test", "Example"].include? params[:name]
+      redirect_to "/#{params[:name]}", :notice => "You are not allowed to lock this list"
+      return
+    end
+
     if not user_signed_in?
       session[:redirect_to] = "/#{params[:name]}"
       redirect_to(new_user_session_url, :notice => "You must be logged in to lock a list")
