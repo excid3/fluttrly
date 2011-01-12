@@ -1,14 +1,6 @@
 Fluttr::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
   config.action_mailer.default_url_options = { :host => "fluttr.heroku.com" }
-  ActionMailer::Base.smtp_settings = {
-    :address    => "smtp.sendgrid.net",
-    :port       => "25",
-    :authentication => :plain,
-    :user_name  => ENV["SENDGRID_USERNAME"],
-    :password   => ENV["SENDGRID_PASSWORD"],
-    :domain     => ENV["SENDGRID_DOMAIN"],
-  }
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
   config.cache_classes = true
@@ -55,3 +47,13 @@ Fluttr::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 end
+
+ActionMailer::Base.smtp_settings = {
+  :address        => "smtp.sendgrid.net",
+  :port           => "25",
+  :authentication => :plain,
+  :user_name      => ENV['SENDGRID_USERNAME'],
+  :password       => ENV['SENDGRID_PASSWORD'],
+  :domain         => ENV['SENDGRID_DOMAIN']
+}
+
