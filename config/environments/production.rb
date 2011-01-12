@@ -1,7 +1,7 @@
 Fluttr::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
   config.action_mailer.default_url_options = { :host => "fluttr.heroku.com" }
-  Actionmailer::Base.smtp_settings = {
+  ActionMailer::Base.smtp_settings = {
     :address    => "smtp.sendgrid.net",
     :port       => "25",
     :authentication => :plain,
