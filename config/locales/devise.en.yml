@@ -32,8 +32,8 @@ en:
       unlocked: 'Your account was successfully unlocked. You are now signed in.'
     mailer:
       confirmation_instructions:
-        subject: 'Confirmation instructions'
+        subject: 'Fluttrly: Confirmation instructions'
       reset_password_instructions:
-        subject: 'Reset password instructions'
+        subject: 'Fluttrly: Reset password instructions'
       unlock_instructions:
-        subject: 'Unlock Instructions'
+        subject: 'Fluttrly: Unlock Instructions'
