@@ -1,7 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 document.observe("dom:loaded", function () {
-  $("task_content").focus();
+  $$('input[type!="hidden"]:first')[0].focus();
 
   if ($("tasks")) {
     $("tasks").observe("click", function(e) {
