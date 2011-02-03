@@ -1,6 +1,6 @@
 module TasksHelper
   def create_links(content)
-    content.gsub!(/#(\w+)/) do |match|
+    content.gsub!(/#([^\s]+)/) do |match|
       link_to "##{$1}", "/#{$1}"
     end
 
