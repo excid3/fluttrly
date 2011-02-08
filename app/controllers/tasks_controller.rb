@@ -23,8 +23,7 @@ class TasksController < ApplicationController
       return
     end
 
-    @list = List.where(["name = ?", params[:name]]).first
-    puts @list.inspect
+    @list = List.find_or_create_by_name(params[:name])
     if not @list.nil? and @list.user_id
       # Remove it
       @list.update_attribute(:user_id, nil)

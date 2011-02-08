@@ -1,11 +1,9 @@
   <div id="lock" class="right">
-  <% if not @list.nil? %>
-    <% if not @list.user_id %>
+    <% if @list.nil? or not @list.user_id %>
       <%= link_to "Lock", "#{request.url}/lock", :method => :post %>
     <% else %>
       <%= link_to "Unlock", "#{request.url}/lock", :method => :post %>
     <% end %>
-  <% end %>
   </div>
   <h2>
     <%= params[:name] %>
