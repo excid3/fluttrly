@@ -99,8 +99,26 @@ div.field, div.actions {
   float: left;
 }
 #header #nav {
-  margin-top: 8px;
+  margin-top: 4px;
   float: right;
+}
+#header #nav li {
+  display: inline;
+}
+#header #nav ul {
+  display: none;
+}
+#header #nav li:hover ul {
+  background: white;
+  border: 1px solid #CCC;
+  display: block;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+#header #nav li:hover li {
+  display: block;
+  float: none;
 }
 
 input[type=text], input[type=password]{

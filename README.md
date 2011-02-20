@@ -13,7 +13,7 @@ License
 -------
 Fluttrly is protected under the AGPL license.
 
-Please see [LICENSE](http://github.com/excid3/fluttr/blob/master/LICENSE) for more details.
+Please see [LICENSE](http://github.com/excid3/fluttrly/blob/master/LICENSE) for more details.
 
 Author
 ------
@@ -28,7 +28,7 @@ JSON
 ----
 
 Example: 
-GET Request http://fluttr.heroku.com/test.json
+GET Request http://fluttrly.com/test.json
 
 Result:
     [{"task":{"name":"Example","created_at":"2010-12-19T02:58:06Z","completed":false,"updated_at":"2010-12-19T02:58:06Z","id":446,"content":"And you can easily share from the web"}},
@@ -40,7 +40,7 @@ XML
 ---
 
 Example: 
-GET Request http://fluttr.heroku.com/test.xml
+GET Request http://fluttrly.com/test.xml
 
 Result:
     <?xml version="1.0" encoding="UTF-8"?> 

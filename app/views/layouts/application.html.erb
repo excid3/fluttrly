@@ -25,13 +25,27 @@
 
     <a href="/"><%= image_tag "fluttrly.png" %></a>
 
-    <div id="nav">
+    <ul id="nav">
       <% if not user_signed_in? %>
-        <%= link_to "Sign Up", new_user_registration_url %> or <%= link_to "Login", new_user_session_url %>
+        <li><%= link_to "Sign Up", new_user_registration_url %> or <%= link_to "Login", new_user_session_url %></li>
+
       <% else %>
-        <%= link_to "Account", edit_user_registration_url %> | <%= link_to "Logout", destroy_user_session_url %>
+        <li><%= link_to "Your Lists", "#" %>
+          <ul>
+          <% if current_user.lists.empty? %>
+            <li>You have not locked any lists</li>
+          <% else %>
+            <% current_user.lists.each do |list| %>
+              <li><%= link_to list.name, "/#{list.name}" %></li>
+            <% end %>
+          <% end %>
+          </ul>
+        </li>
+        
+        <li><%= link_to "Account", edit_user_registration_url %></li>
+        <li><%= link_to "Logout", destroy_user_session_url %></li>
       <% end %>
-    </div>
+    </ul>
 
   </div>
   <% if notice %><p class="notice"><%= notice %></p><% end %>
