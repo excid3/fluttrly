@@ -24,7 +24,7 @@ class TasksController < ApplicationController
     end
 
     @list = List.find_or_create_by_name(params[:name])
-    if not @list.blank? and @list.user_id
+    if not @list.user_id.blank?
       # Remove it
       @list.update_attribute(:user_id, nil)
     else
