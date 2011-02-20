@@ -87,7 +87,7 @@ class TasksController < ApplicationController
     if @list.nil?
       puts "Creating new list"
       @list = List.new({:name => params[:task][:name]})
-      @list.save
+      #@list.save
     end
     @task = @list.tasks.new(params[:task])
 
