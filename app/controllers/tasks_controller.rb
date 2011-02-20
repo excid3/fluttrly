@@ -17,14 +17,14 @@ class TasksController < ApplicationController
       return
     end
 
-    if not user_signed_in?
+    unless user_signed_in?
       session[:redirect_to] = "/#{params[:name]}"
       redirect_to(new_user_session_url, :notice => "You must be logged in to lock a list")
       return
     end
 
     @list = List.find_or_create_by_name(params[:name])
-    if not @list.nil? and @list.user_id
+    unless @list.blank? and @list.user_id
       # Remove it
       @list.update_attribute(:user_id, nil)
     else
@@ -45,7 +45,7 @@ class TasksController < ApplicationController
     @list = List.where(["name = ?", params[:name]]).first
 
     # Check to make sure the list exists
-    if not @list.nil?
+    unless @list.blank?
       if @list.user_id and not user_signed_in?
         redirect_to(new_user_session_url, :notice => "This list is protected.") and return
         return
@@ -83,7 +83,7 @@ class TasksController < ApplicationController
     @list = List.where(["name = ?", params[:task][:name]]).first
     
     # List has never been created before
-    if @list.nil?
+    if @list.blank?
       puts "Creating new list"
       @list = List.new({:name => params[:task][:name]})
       #@list.save
@@ -143,10 +143,10 @@ class TasksController < ApplicationController
     end
   end
 
-  # recieve a text, parse it and send it to update
+  # receive a text, parse it and send it to update
   def sms
     @name, @content = params[:Body].split(":", 2)
-    if not @name.nil? and @name != "" and not @content.nil? and @content != "" 
+    unless @name.blank? and not @content.blank? 
       @content.strip!
       
       if @content.match(/^incomplete/)
