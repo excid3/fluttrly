@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def valid?(url)
-    reg = /\w\S/i
+    reg = /^[\w-]+$/i
     return (reg.match(url)) ? true : false
   end
 
