@@ -38,8 +38,6 @@ class TasksController < ApplicationController
   # GET /tasks.xml
   def index
     param = params[:name]
-    par   = "~!@#%^&*()_+=-`{}|[]\;:,./<>?*"
-    @test = valid?(param)
     if valid?(param)
       # Set redirect_to in session so we can redirect back here after login
       session[:redirect_to] = "/#{params[:name]}"
@@ -73,7 +71,7 @@ class TasksController < ApplicationController
         format.json { render :json => @tasks }
       end
     else
-      redirect_to :root
+      redirect_to(root_path, :notice => "You can only use alphanumerical characters in the name")
     end
 end
 
