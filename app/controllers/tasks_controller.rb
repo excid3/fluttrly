@@ -42,7 +42,7 @@ class TasksController < ApplicationController
       # Set redirect_to in session so we can redirect back here after login
       session[:redirect_to] = "/#{params[:name]}"
       
-      @list = List.where(["name = ?", params[:name]]).first
+      @list = List.find_or_create_by_name(["name = ?", params[:name]])
       
       # Check to make sure the list exists
       if @list.blank?
