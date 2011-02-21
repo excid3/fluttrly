@@ -38,7 +38,7 @@ class TasksController < ApplicationController
   # GET /tasks.xml
   def index
     param = params[:name]
-    if valid?(param)
+    if valid?(params[:name])
       # Set redirect_to in session so we can redirect back here after login
       session[:redirect_to] = "/#{params[:name]}"
       
