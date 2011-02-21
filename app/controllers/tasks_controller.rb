@@ -37,40 +37,45 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.xml
   def index
-    #TODO: validate that params[:name] is a valid URL
-
-    # Set redirect_to in session so we can redirect back here after login
-    session[:redirect_to] = "/#{params[:name]}"
-
-    @list = List.where(["name = ?", params[:name]]).first
-
-    # Check to make sure the list exists
-    if not @list.blank?
-      if @list.user_id and not user_signed_in?
-        redirect_to(new_user_session_url, :notice => "This list is protected.") and return
-        return
-      elsif @list.user_id and user_signed_in? and not current_user.id == @list.user_id
-        redirect_to(root_path, :notice => "You aren't allowed to access this list.") and return
+    param = params[:name]
+    par   = "~!@#%^&*()_+=-`{}|[]\;:,./<>?*"
+    @test = valid?(param)
+    if valid?(param)
+      # Set redirect_to in session so we can redirect back here after login
+      session[:redirect_to] = "/#{params[:name]}"
+      
+      @list = List.where(["name = ?", params[:name]]).first
+      
+      # Check to make sure the list exists
+      if @list.blank?
+        if @list.user_id and not user_signed_in?
+          redirect_to(new_user_session_url, :notice => "This list is protected.") and return
+          return
+        elsif @list.user_id and user_signed_in? and not current_user.id == @list.user_id
+          redirect_to(root_path, :notice => "You aren't allowed to access this list.") and return
+        end
+        @tasks = @list.tasks.order("created_at DESC")
+      else
+        @tasks = []
       end
-      @tasks = @list.tasks.order("created_at DESC")
-    else
-      @tasks = []
-    end
 
     # Initialize the defaults
-    @task = Task.new
-    @count = 0
+      @task = Task.new
+      @count = 0
 
-    @tasks.each do |t|
+      @tasks.each do |t|
       @count += 1 unless t.completed
+      end
+      
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @tasks  }
+        format.json { render :json => @tasks }
+      end
+    else
+      redirect_to :root
     end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @tasks  }
-      format.json { render :json => @tasks }
-    end
-  end
+end
 
   # GET /tasks/1/edit
   def edit
