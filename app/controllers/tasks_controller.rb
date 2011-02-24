@@ -23,8 +23,9 @@ class TasksController < ApplicationController
       return
     end
 
-    @list = List.find_or_create_by_name(params[:name])
-    if not @list.user_id.blank?
+    @list = List.where(["name = ?", params[:name]]).first
+    puts @list.inspect
+    if not @list.nil? and @list.user_id
       # Remove it
       @list.update_attribute(:user_id, nil)
     else
@@ -85,10 +86,10 @@ end
     @list = List.where(["name = ?", params[:task][:name]]).first
     
     # List has never been created before
-    if @list.blank?
+    if @list.nil?
       puts "Creating new list"
       @list = List.new({:name => params[:task][:name]})
-      #@list.save
+      @list.save
     end
     @task = @list.tasks.new(params[:task])
 
@@ -145,10 +146,10 @@ end
     end
   end
 
-  # receive a text, parse it and send it to update
+  # recieve a text, parse it and send it to update
   def sms
     @name, @content = params[:Body].split(":", 2)
-    if not @name.blank? and not @content.blank? 
+    if not @name.nil? and @name != "" and not @content.nil? and @content != "" 
       @content.strip!
       
       if @content.match(/^incomplete/)
