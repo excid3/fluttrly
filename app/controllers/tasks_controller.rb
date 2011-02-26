@@ -52,7 +52,7 @@ class TasksController < ApplicationController
       elsif @list.user_id and user_signed_in? and not current_user.id == @list.user_id
         redirect_to(root_path, :notice => "You aren't allowed to access this list.") and return
       end
-      @tasks = @list.tasks.order("created_at DESC")
+      @tasks = @list.tasks.order("completed ASC, created_at DESC")
     else
       @tasks = []
     end
