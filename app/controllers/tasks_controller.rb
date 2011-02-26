@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
   protect_from_forgery :except => :sms
-  before_filter :authenticate_user!, :only => [:public, :lock]
+  before_filter :authenticate_user!, :only => [:public, :claim]
 
   def home
-    redirect_to "/#{params[:name]}" if params[:name]
+    redirect_to "/#{params[:name].gsub(" ", "%20")}" if params[:name]
 
     @total_tasks = Task.count
     @total_lists = Task.select("DISTINCT(name)").count
@@ -17,7 +17,7 @@ class TasksController < ApplicationController
     @list.update_attribute(:public, !@list.public) if current_user.id == @list.user_id
   end
 
-  def lock
+  def claim 
     @list = List.find_or_create_by_name(params[:name])
     if not @list.nil? and @list.user_id
       # Remove it
@@ -26,7 +26,7 @@ class TasksController < ApplicationController
       @list.update_attribute(:user_id, current_user.id)
     end
     
-    redirect_to "/#{params[:name]}"
+    redirect_to "/#{params[:name].gsub(" ", "%20")}"
   end
 
   # GET /tasks
@@ -87,6 +87,7 @@ class TasksController < ApplicationController
     if @list.nil?
       puts "Creating new list"
       @list = List.new({:name => params[:task][:name]})
+      @list.user_id = current_user.id if user_signed_in? # Auto claim lists
       @list.save
     end
     @task = @list.tasks.new(params[:task])

@@ -31,7 +31,7 @@
 
       <% else %>
         <li><%= link_to "Your Lists", user_lists_path %>
-          <ul>
+          <ul id="your-lists">
           <% if current_user.lists.empty? %>
             <li>You have not locked any lists</li>
           <% else %>

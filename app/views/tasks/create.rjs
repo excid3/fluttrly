@@ -4,6 +4,15 @@ if @task.errors.empty?
   page[:task_form].reset
   page.visual_effect :highlight, @task.id.to_s
   page << "incrementCount();"
+
+  # Add it to the user's lists and show unclaim if user is signed in
+  if user_signed_in?
+    page.insert_html :top, "your-lists", "<li>#{link_to @list.name, '/#{@list.name}'}</li>"
+    page.insert_html :after, "header", "<div id='claim' class='right'>#{link_to 'Unclaim', "/#{@list.name}/claim", :method => :post}</div>"
+  else
+    page.insert_html :after, "header", "<div id='claim' class='right'>#{link_to 'Claim', "/#{@list.name}/claim", :method => :post}</div>"
+  end
+
 else
   page.show :errors
   page.replace_html :errors, "Task cannot be blank"

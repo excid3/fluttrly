@@ -1,10 +1,10 @@
 <%# Only display lock if you are the owner or there is no owner %>
 <% if @list and (@list.user_id.blank? or (user_signed_in? and @list.user_id == current_user.id)) %>
-  <div id="lock" class="right">
+  <div id="claim" class="right">
     <% if @list.nil? or not @list.user_id %>
-      <%= link_to "Lock", "#{request.url}/lock", :method => :post %>
+      <%= link_to "Claim", "#{request.url}/claim", :method => :post %>
     <% else %>
-      <%= link_to "Unlock", "#{request.url}/lock", :method => :post %>
+      <%= link_to "Unclaim", "#{request.url}/claim", :method => :post %>
     <% end %>
   </div>
 <% end %>

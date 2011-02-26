@@ -7,7 +7,7 @@ Fluttr::Application.routes.draw do
   resources :tasks
   post 'sms' => "tasks#sms"
   get 'features' => "tasks#features", :as => "features"
-  post ':name/lock' => "tasks#lock"
+  post ':name/claim' => "tasks#claim"
   post ':name/public' => "tasks#public"
   match ':name' => "tasks#index", :as => "index"
 

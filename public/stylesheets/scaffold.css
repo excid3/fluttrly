@@ -114,7 +114,7 @@ div.field, div.actions {
   display: block;
   position: absolute;
   margin: 0;
-  padding: 0;
+  padding: 0 5px;
 }
 #header #nav li:hover li {
   display: block;
