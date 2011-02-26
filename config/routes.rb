@@ -10,7 +10,7 @@ Fluttr::Application.routes.draw do
 
   resources :tasks
   
-  match ':name' => "tasks#index", :as => "index"
+  match ':name', :to => "tasks#index", :as => "index"
 
 
   root :to => "tasks#home"

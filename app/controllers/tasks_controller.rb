@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
     @list = List.where(["name = ?", params[:name]]).first
     puts @list.inspect
-    if not @list.blank? and @list.user_id
+    if not @list.nil? and @list.user_id
       # Remove it
       @list.update_attribute(:user_id, nil)
     else
@@ -71,7 +71,7 @@ class TasksController < ApplicationController
         format.json { render :json => @tasks }
       end
     else
-     redirect_to(root_path, :notice => "You can only use alphanumerical characters in the name")
+      redirect_to(root_path, :notice => "You can only use alphanumerical characters in the name")
     end
 end
 
@@ -86,7 +86,7 @@ end
     @list = List.where(["name = ?", params[:task][:name]]).first
     
     # List has never been created before
-    if @list.blank?
+    if @list.nil?
       puts "Creating new list"
       @list = List.new({:name => params[:task][:name]})
       @list.save
@@ -146,10 +146,10 @@ end
     end
   end
 
-  # receive a text, parse it and send it to update
+  # recieve a text, parse it and send it to update
   def sms
     @name, @content = params[:Body].split(":", 2)
-    if not @name.blank? and not @content.blank? 
+    if not @name.nil? and @name != "" and not @content.nil? and @content != "" 
       @content.strip!
       
       if @content.match(/^incomplete/)
