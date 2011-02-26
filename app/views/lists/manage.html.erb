@@ -6,10 +6,10 @@
 <ul id="manage">
   <% current_user.lists.each do |list| %>
     <li id="<%= list.id %>">
-      <%= link_to list.name, "/#{list.name}" %>
+      <%= link_to list.name, index_path(list.name) %>
       <span class="tasks">(<%= list.tasks.count %> tasks)</span>
       <div class="right"></div>
-      <div class="right">Public <%= check_box_tag list.name, "public", list.public?, :onchange => remote_function(:url => "/#{list.name}/public") %></div>
+      <div class="right">Public <%= check_box_tag list.name, "public", list.public?, :onchange => remote_function(:url => public_path(list.name)) %></div>
     </li>
   <% end %>
 </ul>

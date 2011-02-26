@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   #TODO: Redirect back if user not authenticated
 
   def home
-    redirect_to "/#{params[:name].gsub(" ", "%20")}" if params[:name]
+    redirect_to index_path(params[:name].gsub(" ", "%20")) if params[:name]
 
     @total_tasks = Task.count
     @total_lists = Task.select("DISTINCT(name)").count
@@ -27,7 +27,7 @@ class TasksController < ApplicationController
       @list.update_attribute(:user_id, current_user.id)
     end
     
-    redirect_to "/#{params[:name].gsub(" ", "%20")}"
+    redirect_to index_path(params[:name].gsub(" ", "%20"))
   end
 
   # GET /tasks
@@ -95,7 +95,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to("/#{params[:task][:name]}", :notice => 'Task was successfully created.') }
+        format.html { redirect_to(index_path(params[:task][:name]), :notice => 'Task was successfully created.') }
         format.xml  { render :xml => @task, :status => :created, :location => @task  }
         format.json { render :json => @task, :status => :created, :location => @task }
         format.js

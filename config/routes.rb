@@ -7,8 +7,8 @@ Fluttr::Application.routes.draw do
   resources :tasks
   post 'sms' => "tasks#sms"
   get 'features' => "tasks#features", :as => "features"
-  post ':name/claim' => "tasks#claim"
-  post ':name/public' => "tasks#public"
+  post ':name/claim' => "tasks#claim", :as => "claim"
+  post ':name/public' => "tasks#public", :as => "public"
   match ':name' => "tasks#index", :as => "index"
 
   root :to => "tasks#home"
