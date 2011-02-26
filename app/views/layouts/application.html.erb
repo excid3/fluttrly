@@ -33,7 +33,7 @@
         <li><%= link_to "Your Lists", user_lists_path %>
           <ul id="your-lists">
           <% if current_user.lists.empty? %>
-            <li>You have not locked any lists</li>
+            <li>You do not own any lists</li>
           <% else %>
             <% current_user.lists.each do |list| %>
               <li><%= link_to list.name, "/#{list.name}" %></li>
