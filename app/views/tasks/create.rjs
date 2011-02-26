@@ -10,7 +10,7 @@ if @task.errors.empty?
     page.replace_html "your-lists", current_user.lists.collect { |l| "<li>#{link_to l.name, index_path(l.name)}</li>" }.join()
     if current_user.id == @list.user_id
       page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Unclaim', claim_path(@list.name), :method => :post}</div>"
-    else
+    elsif @list.user_id.blank?
       page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Claim', claim_path(@list.name), :method => :post}</div>"
     end
   end
