@@ -147,25 +147,25 @@ class TasksController < ApplicationController
   end
 
   # recieve a text, parse it and send it to update
-  def sms
-    @name, @content = params[:Body].split(":", 2)
-    if not @name.nil? and @name != "" and not @content.nil? and @content != "" 
-      @content.strip!
-      
-      if @content.match(/^incomplete/)
-        @tasks = Task.where(["name = ? and completed = ?", @name, false]).order("created_at DESC")
-        @tasks = @tasks.collect{ |task| task.content }.join(". ")
-        render :action => "incomplete", :layout => false
-        return
-
-      else
-        task = Task.new({ :name => @name, :content => @content })
-        @success = task.save
-      end
-
-    else
-      @success = false
-    end
-    render :layout => false
-  end
+#  def sms
+#    @name, @content = params[:Body].split(":", 2)
+#    if not @name.nil? and @name != "" and not @content.nil? and @content != "" 
+#      @content.strip!
+#      
+#      if @content.match(/^incomplete/)
+#        @tasks = Task.where(["name = ? and completed = ?", @name, false]).order("created_at DESC")
+#        @tasks = @tasks.collect{ |task| task.content }.join(". ")
+#        render :action => "incomplete", :layout => false
+#        return
+#
+#      else
+#        task = Task.new({ :name => @name, :content => @content })
+#        @success = task.save
+#      end
+#
+#    else
+#      @success = false
+#    end
+#    render :layout => false
+#  end
 end

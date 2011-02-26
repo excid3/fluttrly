@@ -5,7 +5,7 @@ Fluttr::Application.routes.draw do
   get "user/lists" => "lists#manage"
 
   resources :tasks
-  post 'sms' => "tasks#sms"
+  #post 'sms' => "tasks#sms"
   get 'features' => "tasks#features", :as => "features"
   post ':name/claim' => "tasks#claim", :as => "claim"
   post ':name/public' => "tasks#public", :as => "public"
