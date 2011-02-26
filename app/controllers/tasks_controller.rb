@@ -71,7 +71,7 @@ class TasksController < ApplicationController
         format.json { render :json => @tasks }
       end
     else
-      redirect_to(root_path, :notice => "You can only use alphanumerical characters in the name")
+     redirect_to(root_path, :notice => "You can only use alphanumerical characters in the name")
     end
 end
 
