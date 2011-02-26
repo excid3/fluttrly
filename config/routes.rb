@@ -1,5 +1,4 @@
 Fluttr::Application.routes.draw do
-  #resources :name, :constraints => { :name => /[\w-]/}
 
   devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "signup" }
   match "/users" => redirect("/users/edit")
