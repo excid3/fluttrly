@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   protect_from_forgery :except => :sms
   before_filter :authenticate_user!, :only => [:public, :claim]
+  #TODO: Redirect back if user not authenticated
 
   def home
     redirect_to "/#{params[:name].gsub(" ", "%20")}" if params[:name]
@@ -17,7 +18,7 @@ class TasksController < ApplicationController
     @list.update_attribute(:public, !@list.public) if current_user.id == @list.user_id
   end
 
-  def claim 
+  def claim
     @list = List.find_or_create_by_name(params[:name])
     if not @list.nil? and @list.user_id
       # Remove it

@@ -6,11 +6,12 @@ if @task.errors.empty?
   page << "incrementCount();"
 
   # Add it to the user's lists and show unclaim if user is signed in
+  #page.remove "claim"
   if user_signed_in?
-    page.insert_html :top, "your-lists", "<li>#{link_to @list.name, '/#{@list.name}'}</li>"
-    page.insert_html :after, "header", "<div id='claim' class='right'>#{link_to 'Unclaim', "/#{@list.name}/claim", :method => :post}</div>"
+    page.replace_html "your-lists", current_user.lists.collect { |l| "<li>#{link_to l.name, "/#{l.name}"}</li>" }.join()
+    page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Unclaim', "/#{@list.name}/claim", :method => :post}</div>"
   else
-    page.insert_html :after, "header", "<div id='claim' class='right'>#{link_to 'Claim', "/#{@list.name}/claim", :method => :post}</div>"
+    page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Claim', "/#{@list.name}/claim", :method => :post}</div>"
   end
 
 else
