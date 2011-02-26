@@ -1,10 +1,14 @@
+<%# Only display lock if you are the owner or there is no owner %>
+<% if not @list.nil? and @list.public and user_signed_in? and @list.user_id == current_user.id %>
   <div id="lock" class="right">
     <% if @list.nil? or not @list.user_id %>
-      <%= link_to "Lock", "#{request.url}/lock", :method => :post %>
+      <%= link_to image_tag("unlocked.png"), "#{request.url}/lock", :method => :post %>
     <% else %>
       <%= link_to "Unlock", "#{request.url}/lock", :method => :post %>
     <% end %>
   </div>
+<% end %>
+
   <h2>
     <%= params[:name] %>
   </h2>
