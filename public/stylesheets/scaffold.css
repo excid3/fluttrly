@@ -192,6 +192,8 @@ ul li span.tasks {
 
 h2 {
   text-align:center;
+  margin: 0;
+  padding: 15px;
 }
 
 #features h3 {
@@ -227,6 +229,14 @@ img#close {
     color: #0084B4;
 }
 #tasks a:hover, #manage a:hover { text-decoration: underline; }
+
+#claim {
+  font-size: 11px;
+  line-height: 11px;
+}
+.claim, .public {
+  margin-left: 10px;
+}
 
 @media screen and (max-device-width: 480px) {
   #wrapper {

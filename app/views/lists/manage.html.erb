@@ -9,7 +9,8 @@
       <%= link_to list.name, index_path(list.name) %>
       <span class="tasks">(<%= list.tasks.count %> tasks)</span>
       <div class="right"></div>
-      <div class="right">Public <%= check_box_tag list.name, "public", list.public?, :onchange => remote_function(:url => public_path(list.name)) %></div>
+      <div class="right public">Public <%= check_box_tag list.name, "public", list.public?, :onchange => remote_function(:url => public_path(list.name)) %></div>
+      <div class="right claim"><%= link_to "Unclaim", claim_path(list.name), :method => :post %></div>
     </li>
   <% end %>
 </ul>
