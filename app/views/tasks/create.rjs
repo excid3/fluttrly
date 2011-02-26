@@ -8,9 +8,11 @@ if @task.errors.empty?
   # Add it to the user's lists and show unclaim if user is signed in
   if user_signed_in?
     page.replace_html "your-lists", current_user.lists.collect { |l| "<li>#{link_to l.name, index_path(l.name)}</li>" }.join()
-    page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Unclaim', claim_path(@list.name), :method => :post}</div>"
-  else
-    page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Claim', claim_path(@list.name), :method => :post}</div>"
+    if current_user.id == @list.user_id
+      page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Unclaim', claim_path(@list.name), :method => :post}</div>"
+    else
+      page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Claim', claim_path(@list.name), :method => :post}</div>"
+    end
   end
 
 else
