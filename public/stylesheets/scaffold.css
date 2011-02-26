@@ -176,6 +176,10 @@ ul li {
   margin: 5px;
 }
 
+ul li span.tasks {
+  color: #AAA;
+}
+
 #footer {
   color: #CCC;
   font-size: 14px;
@@ -189,7 +193,6 @@ ul li {
 h2 {
   text-align:center;
 }
-
 
 #features h3 {
   font-size: 16px;
@@ -219,11 +222,11 @@ img#close {
   text-align: center;
 }
 
-#tasks a {
+#tasks a, #manage a {
     text-decoration: none;
     color: #0084B4;
 }
-#tasks a:hover { text-decoration: underline; }
+#tasks a:hover, #manage a:hover { text-decoration: underline; }
 
 @media screen and (max-device-width: 480px) {
   #wrapper {

@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   protect_from_forgery :except => :sms
+  before_filter :authenticate_user!, :only => [:public, :lock]
 
   def home
     redirect_to "/#{params[:name]}" if params[:name]
@@ -11,17 +12,12 @@ class TasksController < ApplicationController
   def features
   end
 
+  def public
+    @list = List.find_by_name(params[:name])
+    @list.update_attribute(:public, !@list.public) if current_user.id == @list.user_id
+  end
+
   def lock
-    if ["test", "Example"].include? params[:name]
-      redirect_to "/#{params[:name]}", :notice => "You are not allowed to lock this list"
-      return
-    end
-
-    if not user_signed_in?
-      redirect_to(new_user_session_url, :notice => "You must be logged in to lock a list")
-      return
-    end
-
     @list = List.find_or_create_by_name(params[:name])
     if not @list.nil? and @list.user_id
       # Remove it
