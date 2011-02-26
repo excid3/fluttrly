@@ -18,7 +18,6 @@ class TasksController < ApplicationController
     end
 
     if not user_signed_in?
-      session[:redirect_to] = "/#{params[:name]}"
       redirect_to(new_user_session_url, :notice => "You must be logged in to lock a list")
       return
     end
@@ -39,21 +38,22 @@ class TasksController < ApplicationController
   def index
     #TODO: validate that params[:name] is a valid URL
 
-    # Set redirect_to in session so we can redirect back here after login
-    session[:redirect_to] = "/#{params[:name]}"
-
     @list = List.where(["name = ?", params[:name]]).first
 
     # Check to make sure the list exists
-    if not @list.nil?
+    if not @list.nil? 
 
-      # Not signed in and its a private list
-      if !@list.public and not user_signed_in?
-        redirect_to(new_user_session_url, :notice => "This list is protected.") and return
+      # Its a private list
+      if !@list.public and not @list.user_id.blank?
 
-      # Signed in but user doesn't own the list
-      elsif !@list.public and user_signed_in? and not current_user.id == @list.user_id
-        redirect_to(root_path, :notice => "You aren't allowed to access this list.") and return
+        if not user_signed_in?
+          redirect_to(new_user_session_url, :notice => "This list is protected.") and return
+
+        # Signed in but user doesn't own the list
+        elsif @list.user_id != current_user.id 
+          redirect_to(root_path, :notice => "You aren't allowed to access this list.") and return
+        end
+
       end
 
       @tasks = @list.tasks.order("completed ASC, created_at DESC")
