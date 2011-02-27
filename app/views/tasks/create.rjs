@@ -17,9 +17,9 @@ if @task.errors.empty?
         t.id = "list-#{@list.id}"
       end
       page.replace_html "claim", "Public #{check_box_tag @list.name, "public", @list.public?, :onchange => remote_function(:url => public_path(@list.name))}<br />#{link_to 'Unclaim', claim_path(@list.name), :method => :post}"
-    elsif @list.user_id.blank?
-      page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Claim', claim_path(@list.name), :method => :post}</div>"
     end
+  elsif @list.user_id.blank?
+    page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Claim', claim_path(@list.name), :method => :post}</div>"
   end
 
 else
