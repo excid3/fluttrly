@@ -14,6 +14,7 @@ if @task.errors.empty?
 
     if current_user.id == @list.user_id
       page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Unclaim', claim_path(@list.name), :method => :post}</div>"
+      #TODO: Show public link
     elsif @list.user_id.blank?
       page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Claim', claim_path(@list.name), :method => :post}</div>"
     end

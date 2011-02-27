@@ -10,7 +10,11 @@
 <% end %>
   </div>
 
-  <h2 id="<%= @list.id %>">
+  <% if @list.nil? %>
+    <h2>
+  <% else %>
+    <h2 id="<%= @list.id %>">
+  <% end %>
     <%= params[:name] %>
   </h2>
 
