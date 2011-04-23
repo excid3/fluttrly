@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   #TODO: Redirect back if user not authenticated
 
   def home
-    redirect_to index_path(params[:name].gsub(" ", "%20")) if params[:name]
+    redirect_to index_path(params[:name].gsub(" ", "%20")) and return if params[:name]
 
     @total_tasks = Task.count
     @total_lists = Task.select("DISTINCT(name)").count
