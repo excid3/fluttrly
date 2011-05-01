@@ -38,47 +38,41 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.xml
   def index
-    if valid?(params[:name])
-
       @list = List.where(["name = ?", params[:name]]).first
-     # Check to make sure the list exists
-    if not @list.nil? 
-
-      # Its a private list
-      if !@list.public and not @list.user_id.blank?
-
-        if not user_signed_in?
-          redirect_to(new_user_session_url, :notice => "This list is protected.") and return
-
-        # Signed in but user doesn't own the list
-        elsif @list.user_id != current_user.id 
-          redirect_to(root_path, :notice => "You aren't allowed to access this list.") and return
+      # Check to make sure the list exists
+      if not @list.nil? 
+        
+        # Its a private list
+        if !@list.public and not @list.user_id.blank?
+          
+          if not user_signed_in?
+            redirect_to(new_user_session_url, :notice => "This list is protected.") and return
+            
+            # Signed in but user doesn't own the list
+          elsif @list.user_id != current_user.id 
+            redirect_to(root_path, :notice => "You aren't allowed to access this list.") and return
+          end          
         end
-
+        
+        @tasks = @list.tasks.order("completed ASC, created_at DESC")
+        
+      else
+        @tasks = []
       end
-
-      @tasks = @list.tasks.order("completed ASC, created_at DESC")
-
-    else
-      @tasks = []
-    end
-
-    # Initialize the defaults
-    @task = Task.new
-    @count = 0
-
-    @tasks.each do |t|
-      @count += 1 unless t.completed
-    end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @tasks  }
-      format.json { render :json => @tasks }
-    end
-    else
-      redirect_to(root_path, :notice => "You can only use alphanumerical characters in the name")
-    end
+      
+      # Initialize the defaults
+      @task = Task.new
+      @count = 0
+      
+      @tasks.each do |t|
+        @count += 1 unless t.completed
+      end
+      
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @tasks  }
+        format.json { render :json => @tasks }
+      end
 end
 
   # GET /tasks/1/edit
