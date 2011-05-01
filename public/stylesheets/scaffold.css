@@ -114,7 +114,7 @@ div.field, div.actions {
   display: block;
   position: absolute;
   margin: 0;
-  padding: 0;
+  padding: 0 5px;
 }
 #header #nav li:hover li {
   display: block;
@@ -176,6 +176,10 @@ ul li {
   margin: 5px;
 }
 
+ul li span.tasks {
+  color: #AAA;
+}
+
 #footer {
   color: #CCC;
   font-size: 14px;
@@ -188,8 +192,9 @@ ul li {
 
 h2 {
   text-align:center;
+  margin: 0;
+  padding: 15px;
 }
-
 
 #features h3 {
   font-size: 16px;
@@ -219,11 +224,19 @@ img#close {
   text-align: center;
 }
 
-#tasks a {
+#tasks a, #manage a {
     text-decoration: none;
     color: #0084B4;
 }
-#tasks a:hover { text-decoration: underline; }
+#tasks a:hover, #manage a:hover { text-decoration: underline; }
+
+#claim {
+  font-size: 11px;
+  line-height: 11px;
+}
+.claim, .public {
+  margin-left: 10px;
+}
 
 @media screen and (max-device-width: 480px) {
   #wrapper {

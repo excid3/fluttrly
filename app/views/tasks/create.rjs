@@ -4,6 +4,24 @@ if @task.errors.empty?
   page[:task_form].reset
   page.visual_effect :highlight, @task.id.to_s
   page << "incrementCount();"
+
+  # Add it to the user's lists and show unclaim if user is signed in
+  if user_signed_in?
+    
+    if !current_user.lists.empty?
+      page.replace_html "your-lists", current_user.lists.collect { |l| "<li>#{link_to l.name, index_path(l.name)}</li>" }.join()
+    end
+
+    if current_user.id == @list.user_id
+      page.select("h2").each do |t|
+        t.id = "list-#{@list.id}"
+      end
+      page.replace_html "claim", "Public #{check_box_tag @list.name, "public", @list.public?, :onchange => remote_function(:url => public_path(@list.name))}<br />#{link_to 'Unclaim', claim_path(@list.name), :method => :post}"
+    end
+  elsif @list.user_id.blank?
+    page.replace_html "claim", "<div id='claim' class='right'>#{link_to 'Claim', claim_path(@list.name), :method => :post}</div>"
+  end
+
 else
   page.show :errors
   page.replace_html :errors, "Task cannot be blank"

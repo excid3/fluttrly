@@ -1,11 +1,20 @@
-  <div id="lock" class="right">
+<%# Only display lock if you are the owner or there is no owner %>
+<div id="claim" class="right">
+  <% if @list and (@list.user_id.blank? or (user_signed_in? and @list.user_id == current_user.id)) %>
     <% if @list.nil? or not @list.user_id %>
-      <%= link_to "Lock", "#{request.url}/lock", :method => :post %>
+      <%= link_to "Claim", claim_path(@list.name), :method => :post %>
     <% else %>
-      <%= link_to "Unlock", "#{request.url}/lock", :method => :post %>
+      Public <%= check_box_tag @list.name, "public", @list.public?, :onchange => remote_function(:url => public_path(@list.name)) %><br />
+      <%= link_to "Unclaim", claim_path(@list.name), :method => :post %>
     <% end %>
-  </div>
-  <h2>
+  <% end %>
+</div>
+
+  <% if @list.nil? %>
+    <h2>
+  <% else %>
+    <h2 id="list-<%= @list.id %>">
+  <% end %>
     <%= params[:name] %>
   </h2>
 

@@ -1,16 +1,16 @@
 Fluttr::Application.routes.draw do
+  match "widgets/:id", :to => "widgets#show"
 
   devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "signup" }
-  match "/users" => redirect("/users/edit")
-
-  match 'sms', :to => "tasks#sms", :via => :post
-  match 'features', :to => "tasks#features", :as => "features"
-  match ':name/lock', :to => "tasks#lock", :via => :post
+  get "users" => redirect("/users/edit")
+  get "user/lists" => "lists#manage"
 
   resources :tasks
-  
-  match ':name' => "tasks#index", :as => "index", :constraints => { :name => /\w+/ } 
-
+  #post 'sms' => "tasks#sms"
+  get 'features' => "tasks#features", :as => "features"
+  post ':name/claim' => "tasks#claim", :as => "claim"
+  post ':name/public' => "tasks#public", :as => "public"
+  match ':name' => "tasks#index", :as => "index"
 
   root :to => "tasks#home"
 end

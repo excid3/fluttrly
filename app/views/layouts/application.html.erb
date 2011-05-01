@@ -30,10 +30,10 @@
         <li><%= link_to "Sign Up", new_user_registration_url %> or <%= link_to "Login", new_user_session_url %></li>
 
       <% else %>
-        <li><%= link_to "Your Lists", "#" %>
-          <ul>
+        <li><%= link_to "Your Lists", user_lists_path %>
+          <ul id="your-lists">
           <% if current_user.lists.empty? %>
-            <li>You have not locked any lists</li>
+            <li>You do not own any lists</li>
           <% else %>
             <% current_user.lists.each do |list| %>
               <li><%= link_to list.name, "/#{list.name}" %></li>
