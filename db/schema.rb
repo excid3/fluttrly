@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(:version => 20110226212932) do
   end
 
   create_table "tasks", :force => true do |t|
-    t.string    "name",                          :null => false
-    t.string    "content",                       :null => false
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "completed",  :default => false, :null => false
-    t.integer   "list_id"
+    t.string   "name",                          :null => false
+    t.string   "content",                       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "completed",  :default => false, :null => false
+    t.integer  "list_id"
   end
 
   create_table "users", :force => true do |t|

@@ -1,4 +1,5 @@
 Fluttr::Application.routes.draw do
+  match "widgets/:id", :to => "widgets#show"
 
   devise_for :users, :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "signup" }
   get "users" => redirect("/users/edit")
