@@ -1,8 +1,10 @@
 class TasksController < ApplicationController
   protect_from_forgery :except => :sms
+  before_filter :authenticate_user!, :only => [:public, :claim]
+  #TODO: Redirect back if user not authenticated
 
   def home
-    redirect_to "/#{params[:name]}" if params[:name]
+    redirect_to index_path(params[:name].gsub(" ", "%20")) and return if params[:name]
 
     @total_tasks = Task.count
     @total_lists = Task.select("DISTINCT(name)").count
@@ -11,20 +13,13 @@ class TasksController < ApplicationController
   def features
   end
 
-  def lock
-    if ["test", "Example"].include? params[:name]
-      redirect_to "/#{params[:name]}", :notice => "You are not allowed to lock this list"
-      return
-    end
+  def public
+    @list = List.find_by_name(params[:name])
+    @list.update_attribute(:public, !@list.public) if current_user.id == @list.user_id
+  end
 
-    if not user_signed_in?
-      session[:redirect_to] = "/#{params[:name]}"
-      redirect_to(new_user_session_url, :notice => "You must be logged in to lock a list")
-      return
-    end
-
-    @list = List.where(["name = ?", params[:name]]).first
-    puts @list.inspect
+  def claim
+    @list = List.find_or_create_by_name(params[:name])
     if not @list.nil? and @list.user_id
       # Remove it
       @list.update_attribute(:user_id, nil)
@@ -32,48 +27,52 @@ class TasksController < ApplicationController
       @list.update_attribute(:user_id, current_user.id)
     end
     
-    redirect_to "/#{params[:name]}"
+    redirect_to index_path(params[:name].gsub(" ", "%20"))
   end
 
   # GET /tasks
   # GET /tasks.xml
   def index
-      @list = List.where(["name = ?", params[:name]]).first
-      # Check to make sure the list exists
-      if not @list.nil? 
-        
-        # Its a private list
-        if !@list.public and not @list.user_id.blank?
-          
-          if not user_signed_in?
-            redirect_to(new_user_session_url, :notice => "This list is protected.") and return
-            
-            # Signed in but user doesn't own the list
-          elsif @list.user_id != current_user.id 
-            redirect_to(root_path, :notice => "You aren't allowed to access this list.") and return
-          end          
+    #TODO: validate that params[:name] is a valid URL
+
+    @list = List.where(["name = ?", params[:name]]).first
+
+    # Check to make sure the list exists
+    if not @list.nil? 
+
+      # Its a private list
+      if !@list.public and not @list.user_id.blank?
+
+        if not user_signed_in?
+          redirect_to(new_user_session_url, :notice => "This list is protected.") and return
+
+        # Signed in but user doesn't own the list
+        elsif @list.user_id != current_user.id 
+          redirect_to(root_path, :notice => "You aren't allowed to access this list.") and return
         end
-        
-        @tasks = @list.tasks.order("completed ASC, created_at DESC")
-        
-      else
-        @tasks = []
+
       end
-      
-      # Initialize the defaults
-      @task = Task.new
-      @count = 0
-      
-      @tasks.each do |t|
-        @count += 1 unless t.completed
-      end
-      
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml  { render :xml => @tasks  }
-        format.json { render :json => @tasks }
-      end
-end
+
+      @tasks = @list.tasks.order("completed ASC, created_at DESC")
+
+    else
+      @tasks = []
+    end
+
+    # Initialize the defaults
+    @task = Task.new
+    @count = 0
+
+    @tasks.each do |t|
+      @count += 1 unless t.completed
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @tasks  }
+      format.json { render :json => @tasks }
+    end
+  end
 
   # GET /tasks/1/edit
   def edit
@@ -89,13 +88,14 @@ end
     if @list.nil?
       puts "Creating new list"
       @list = List.new({:name => params[:task][:name]})
+      @list.user_id = current_user.id if user_signed_in? # Auto claim lists
       @list.save
     end
     @task = @list.tasks.new(params[:task])
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to("/#{params[:task][:name]}", :notice => 'Task was successfully created.') }
+        format.html { redirect_to(index_path(params[:task][:name]), :notice => 'Task was successfully created.') }
         format.xml  { render :xml => @task, :status => :created, :location => @task  }
         format.json { render :json => @task, :status => :created, :location => @task }
         format.js
@@ -147,25 +147,25 @@ end
   end
 
   # recieve a text, parse it and send it to update
-  def sms
-    @name, @content = params[:Body].split(":", 2)
-    if not @name.nil? and @name != "" and not @content.nil? and @content != "" 
-      @content.strip!
-      
-      if @content.match(/^incomplete/)
-        @tasks = Task.where(["name = ? and completed = ?", @name, false]).order("created_at DESC")
-        @tasks = @tasks.collect{ |task| task.content }.join(". ")
-        render :action => "incomplete", :layout => false
-        return
-
-      else
-        task = Task.new({ :name => @name, :content => @content })
-        @success = task.save
-      end
-
-    else
-      @success = false
-    end
-    render :layout => false
-  end
+#  def sms
+#    @name, @content = params[:Body].split(":", 2)
+#    if not @name.nil? and @name != "" and not @content.nil? and @content != "" 
+#      @content.strip!
+#      
+#      if @content.match(/^incomplete/)
+#        @tasks = Task.where(["name = ? and completed = ?", @name, false]).order("created_at DESC")
+#        @tasks = @tasks.collect{ |task| task.content }.join(". ")
+#        render :action => "incomplete", :layout => false
+#        return
+#
+#      else
+#        task = Task.new({ :name => @name, :content => @content })
+#        @success = task.save
+#      end
+#
+#    else
+#      @success = false
+#    end
+#    render :layout => false
+#  end
 end
