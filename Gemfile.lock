@@ -32,6 +32,7 @@ GEM
       activesupport (~> 3.0.0)
     bcrypt-ruby (2.1.2)
     builder (2.1.2)
+    chameleon (0.2.2)
     devise (1.1.5)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 1.0.2)
@@ -76,6 +77,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  chameleon
   devise (= 1.1.5)
   rails (= 3.0.1)
   sqlite3-ruby
