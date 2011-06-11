@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_and_redirect
 
   def manage
   end

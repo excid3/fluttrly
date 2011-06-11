@@ -44,7 +44,7 @@ class TasksController < ApplicationController
       if !@list.public and not @list.user_id.blank?
 
         if not user_signed_in?
-          redirect_to(new_user_session_url, :notice => "This list is protected.") and return
+          authenticate_and_redirect
 
         # Signed in but user doesn't own the list
         elsif @list.user_id != current_user.id 
